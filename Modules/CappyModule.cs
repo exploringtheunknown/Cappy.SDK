@@ -6,9 +6,9 @@ namespace Cappy.SDK.Modules;
 
 public static class CappyModule
 {
-    public static IServiceCollection AddCappySdk(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddCappySdk(this IServiceCollection serviceCollection, string serverUrl, string apiKey)
     {
-        serviceCollection.AddScoped<ICappyService, CappyService>();
+        serviceCollection.AddScoped<ICappyService>(c => new CappyService(serverUrl, apiKey));
         return serviceCollection;
     }
 }

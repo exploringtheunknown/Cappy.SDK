@@ -18,7 +18,7 @@ This SDK helps .NET developers integrate with Cappy by using the underlying Capp
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCappySdk();
+builder.Services.AddCappySdk("cappy-integration-api-url", "your-cappy-api-key");
 ```
 
 This will add a scoped DI registration to the current ServiceCollection so that the main service can be injected as such:
