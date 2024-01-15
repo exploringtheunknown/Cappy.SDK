@@ -10,7 +10,7 @@ This SDK helps .NET developers integrate with Cappy by using the underlying Capp
 
 ## Installation
 
-`nuget install Cappy.SDK`
+`dotnet add package Cappy.SDK --version 1.0.0`
 
 ## Usage
 
