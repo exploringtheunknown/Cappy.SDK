@@ -12,14 +12,14 @@ This SDK helps .NET developers integrate with Cappy by using the underlying Capp
 
 **Add Cappy SDK in Program.cs**
 
-```
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCappySdk();
 ```
 
 This will add a scoped DI registration to the current ServiceCollection so that the main service can be injected as such:
 
-```
+```csharp
 public class MyController
 {
     private readonly ICappyService _cappyService;
@@ -32,8 +32,139 @@ public class MyController
 }
 ```
 
+### ICappyService Interface Usage
 
+The `ICappyService` interface provides the following methods:
+
+## SynchronizeDeviationAsync
+Use this method to synchronize a specific window of deviations. Any deviations present in Cappy but not in the provided synchronization window will be deleted. Remember to provide all deviations and carefully specify the synchronization window to avoid data loss.
+
+##
+
+Use this method to synchronize a specific window of deviations. This method takes a `CappyDeviationSynchronization` object as a parameter.
+
+```csharp
+Task SynchronizeDeviationAsync(CappyDeviationSynchronization synchronization);
+```
+This method allows you to create a list of deviations.
+
+```csharp
+Task CreateDeviationsAsync(List<CappyDeviation> deviations);
+```
+This method is for updating a list of deviations.
+
+```csharp
+Task UpdateDeviations(List<CappyDeviation> deviations);
+```
+This method deletes a specific deviation by ID.
+
+```csharp
+Task DeleteDeviationAsync(string id);
+```
+This method is for creating an employee.
+
+```csharp
+Task CreateEmployeeAsync(CappyDetailedEmployee employee);
+```
+This method creates multiple employees.
+
+```csharp
+Task CreateEmployeesAsync(List<CappyDetailedEmployee> employees);
+```
+This method updates the details of a specified employee.
+
+```csharp
+Task UpdateEmployeeAsync(CappyDetailedEmployee employee);
+```
+This method updates multiple employees.
+
+```csharp
+Task UpdateEmployeesAsync(List<CappyDetailedEmployee> employees);
+```
+Retrieve all employees using this method.
+
+```csharp
+Task<List<CappyEmployee>> GetAllEmployeesAsync();
+```
+Retrieve a specific employee using their ID.
+
+```csharp
+Task<CappyDetailedEmployee> GetEmployeeAsync(string id);
+```
+Use this method to retrieve only employees who have given consent.
+
+```csharp
+Task<List<CappyEmployee>> GetEmployeesWithConsentAsync();
+```
+This method retrieves all active employees.
+
+```csharp
+Task<List<CappyEmployee>> GetActiveEmployeesAsync();
+```
+This method fetches employees who are awaiting activation.
+
+```csharp
+Task<List<CappyEmployee>> GetEmployeesAwaitingActivationAsync();
+```
+This method activates a specific employee by their ID.
+
+```csharp
+Task ActivateEmployeeAsync(string id);
+```
+
+Use this method to retrieve all employers.
+
+```csharp
+Task<List<CappyEmployer>> GetEmployersAsync();
+```
+Use this method to create an OffCyclePayment.
+
+```csharp
+Task CreateOffCyclePaymentAsync(DateTime paymentDate, string id, 
+CappyOffCyclePayment offCyclePayment);
+```
+This method is used to create a Payroll file.
+
+```csharp
+Task CreatePayrollFileAsync(CappyPayRollFile payRollFile);
+```
+
+This method deletes a Payroll file.
+```csharp
+Task DeletePayrollFileAsync(DateTime payDay, string fileId);
+```
+Use this method to create a raw Payroll file.
+
+```csharp
+Task CreateRawPayrollFileAsync(DateTime payDay, string fileId, string fileContent);
+```
+Use this method to synchronize shifts.
+
+```csharp
+Task SynchronizeShifts(CappyShiftSynchronization synchronization);
+```
+This method creates one or more shifts.
+
+```csharp
+Task CreateShiftsAsync(List<CappyShift> shifts);
+```
+This method updates a range of shifts.
+```csharp
+Task UpdateShiftsAsync(List<CappyShift> shifts);
+```
+
+This method deletes a specific shift with the provided ID.
+```csharp
+Task DeleteShiftsAsync(string id);
+```
 ## Dependencies
+
+- .NET 6 (LTS)
+- Microsoft.AspNetCore.Http.Abstractions | 2.2.0
+- Microsoft.AspNetCore.Mvc.Abstractions | 2.2.0
+- Microsoft.Extensions.DependencyInjection | 8.0.0
+- Microsoft.Extensions.Primitives | 8.0.0
+- Newtonsoft.Json | 13.0.3
 
 ## License
 
