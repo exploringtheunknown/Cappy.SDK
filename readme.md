@@ -1,14 +1,37 @@
 # Cappy.SDK
 
-Cappy is a service to offer flexible pay to you as an employee. The service gives you ongoing control over your time worked and earned salary, as well as the possibility to withdraw part of your earned salary when you need it and between regular paydays. Everything available to you around the clock, every day of the year, in a user-friendly mobile app.
+[Cappy](https://cappy.se/) is a service to offer flexible pay to employees. The service gives an ongoing control over time worked and earned salary, as well as the possibility to withdraw part of your earned salary when the employee needs it and between regular paydays. Everything available around the clock, every day of the year, in a user-friendly mobile app.
 
-This SDK helps .NET developers integrate with Cappy.
+This SDK helps .NET developers integrate with Cappy by using the underlying Cappy Integration API.
 
 ## Installation
 
 `nuget install Cappy.SDK`
 
 ## Usage
+
+**Add Cappy SDK in Program.cs**
+
+```
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCappySdk();
+```
+
+This will add a scoped DI registration to the current ServiceCollection so that the main service can be injected as such:
+
+```
+public class MyController
+{
+    private readonly ICappyService _cappyService;
+
+    public MyController(ICappyService cappyService)
+    {
+        //Scoped service
+        _cappyService = cappyService;
+    }
+}
+```
+
 
 ## Dependencies
 
