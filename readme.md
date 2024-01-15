@@ -4,6 +4,10 @@
 
 This SDK helps .NET developers integrate with Cappy by using the underlying Cappy Integration API.
 
+[GitHub repository](https://github.com/exploringtheunknown/Cappy.SDK)
+
+[NuGet package](https://www.nuget.org/packages/Cappy.SDK/)
+
 ## Installation
 
 `nuget install Cappy.SDK`
