@@ -30,7 +30,7 @@ public class CappyClient : ICappyClient
         var response = await _httpClient.GetAsync(path);
         
         if (!response.IsSuccessStatusCode)
-            throw new CappySdkException(response.ReasonPhrase);
+            throw new CappySdkException(response.ReasonPhrase ?? $"{response.StatusCode}");
         
         var singleObject = JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
         return singleObject;
@@ -41,7 +41,7 @@ public class CappyClient : ICappyClient
         var response = await _httpClient.GetAsync(path);
         
         if (!response.IsSuccessStatusCode)
-            throw new CappySdkException(response.ReasonPhrase);
+            throw new CappySdkException(response.ReasonPhrase ?? $"{response.StatusCode}");
         
         var objects = JsonConvert.DeserializeObject<List<T>>(response.Content.ReadAsStringAsync().Result);
         return objects;
@@ -62,7 +62,7 @@ public class CappyClient : ICappyClient
         var response = await _httpClient.PostAsync(path, httpContent);
         
         if (!response.IsSuccessStatusCode)
-            throw new CappySdkException(response.ReasonPhrase);
+            throw new CappySdkException(response.ReasonPhrase ?? $"{response.StatusCode}");
     }
     
     public async Task PostRangeAsync<T>(string path, List<T> model) where T : CappyBase
@@ -72,7 +72,7 @@ public class CappyClient : ICappyClient
         var response = await _httpClient.PostAsync(path, httpContent);
         
         if (!response.IsSuccessStatusCode)
-            throw new CappySdkException(response.ReasonPhrase);
+            throw new CappySdkException(response.ReasonPhrase ?? $"{response.StatusCode}");
     }
     
     public async Task<T> PatchAsync<T>(string path, T model) where T : CappyBase
@@ -82,7 +82,7 @@ public class CappyClient : ICappyClient
         var response = await _httpClient.PatchAsync(path, httpContent);
         
         if (!response.IsSuccessStatusCode)
-            throw new CappySdkException(response.ReasonPhrase);
+            throw new CappySdkException(response.ReasonPhrase ?? $"{response.StatusCode}");
 
         return model;
     }
@@ -94,22 +94,22 @@ public class CappyClient : ICappyClient
         var response = await _httpClient.PatchAsync(path, httpContent);
         
         if (!response.IsSuccessStatusCode)
-            throw new CappySdkException(response.ReasonPhrase);
+            throw new CappySdkException(response.ReasonPhrase ?? $"{response.StatusCode}");
     }
     
     public async Task DeleteAsync(string path)
     {
         var response = await _httpClient.DeleteAsync(path);
         if (!response.IsSuccessStatusCode) 
-            throw new CappySdkException(response.ReasonPhrase);
+            throw new CappySdkException(response.ReasonPhrase ?? $"{response.StatusCode}");
     }
 
     public async Task PostRawAsync(string path, string fileContent)
     {
         var httpContent = new StringContent(fileContent, Encoding.UTF8, _applicationJson);
-        var response = await _httpClient.PatchAsync(path, httpContent);
+        var response = await _httpClient.PostAsync(path, httpContent);
         
         if (!response.IsSuccessStatusCode)
-            throw new CappySdkException(response.ReasonPhrase);
+            throw new CappySdkException(response.ReasonPhrase ?? $"{response.StatusCode}");
     }
 }

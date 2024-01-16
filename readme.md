@@ -40,11 +40,6 @@ public class MyController
 
 The `ICappyService` interface provides the following methods:
 
-## SynchronizeDeviationAsync
-Use this method to synchronize a specific window of deviations. Any deviations present in Cappy but not in the provided synchronization window will be deleted. Remember to provide all deviations and carefully specify the synchronization window to avoid data loss.
-
-##
-
 Use this method to synchronize a specific window of deviations. This method takes a `CappyDeviationSynchronization` object as a parameter.
 
 ```csharp
