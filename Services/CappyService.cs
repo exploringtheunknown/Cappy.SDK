@@ -143,7 +143,7 @@ public class CappyService : ICappyService
     
     public async Task UpdateShiftsAsync(List<CappyShift> shifts)
     {
-        await Client.PatchRangeAsync<CappyShift>($"{_v1Shift}", shifts);
+        await Client.PatchRangeAsync($"{_v1Shift}", shifts);
     }
     
     public async Task DeleteShiftsAsync(string id)
