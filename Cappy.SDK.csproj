@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Cappy.SDK</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Marcus Nordquist</Authors>
     <Company>QueensLab</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
